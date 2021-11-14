@@ -1,4 +1,7 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" controllerName="sap.ui.demo.todo.controller.App" displayBlock="true">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:layout="sap.ui.layout"
+	xmlns:cc="sap.ui.demo.todo.control"
+	xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" controllerName="sap.ui.demo.todo.controller.App" displayBlock="true">
 		<App>
 			<Page>
 				<customHeader>
@@ -12,7 +15,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-
+							<layout:VerticalLayout>
 							<List id="todoList"
 								items="{ path: '/todos', events: { change: '.updateItemsLeftCount' } }"
 								mode="None"
@@ -53,7 +56,8 @@
 									</customData>
 								</CustomListItem>
 							</List>
-
+							<cc:PieChart todos="{/todos}"/>
+							</layout:VerticalLayout>
 						</f:content>
 					</f:DynamicPage>
 				</content>
