@@ -14,15 +14,21 @@
 		"build-self-contained": "ui5 build self-contained -a --clean-dest",
 		"serve-dist": "ws --compress -d dist"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@ui5/cli": "^2.14.0",
+		"chart.js": "^3.6.0",
 		"eslint": "^7.32.0",
 		"karma": "^6.3.8",
 		"karma-chrome-launcher": "^3.1.0",
 		"karma-coverage": "^2.0.3",
 		"karma-ui5": "^2.3.4",
 		"local-web-server": "^4.2.1",
-		"rimraf": "^3.0.2"
+		"rimraf": "^3.0.2",
+		"ui5-tooling-modules": "^0.1.0"
+	},
+	"ui5": {
+		"dependencies": [
+			"ui5-tooling-modules"
+		]
 	}
 }
