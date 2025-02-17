@@ -31,8 +31,8 @@
 	},
 	"dependencies": {
 		"@sap-webcomponents/rich-text-editor": "^1.0.0-rc.6",
-		"@ui5/webcomponents": "2.7.1",
-		"@ui5/webcomponents-ai": "2.7.1",
-		"@ui5/webcomponents-icons": "2.7.1"
+		"@ui5/webcomponents": "^2.7.3",
+		"@ui5/webcomponents-ai": "^2.7.3",
+		"@ui5/webcomponents-icons": "^2.7.3"
 	}
 }

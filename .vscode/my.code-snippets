@@ -29,6 +29,14 @@
 			"  afterMiddleware: compression"
 		],
 		"description": "ui5.yaml_middleware"
+	},
+	"WEBC_Namespace": {
+		"prefix": "xmlns:webc=",
+		"scope": "xml",
+		"body": [
+			"xmlns:webc=\"@ui5/webcomponents\""
+		],
+		"description": "WEBC_Namespace"
 	},	
 	"AI_Namespace": {
 		"prefix": "xmlns:ai=",
