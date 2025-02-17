@@ -63,7 +63,7 @@
 		"scope": "xml",
 		"body": [
 			"core:require='{"
-			"	\"Icon\": \"@ui5/webcomponents/dist/Icon\"",
+			"	\"Icon\": \"@ui5/webcomponents/dist/Icon\",",
 			"	\"iconAI\": \"@ui5/webcomponents-icons/ai\",",
 			"	\"iconStop\": \"@ui5/webcomponents-icons/stop\",",
 			"	\"iconRevise\": \"@ui5/webcomponents-icons/navigation-down-arrow\"",
