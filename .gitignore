@@ -63,3 +63,5 @@ typings/
 dist/
 tmp/
 report/
+
+.ui5-tooling-modules/

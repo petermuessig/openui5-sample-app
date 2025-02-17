@@ -8,7 +8,7 @@
 		"npm": ">= 8"
 	},
 	"scripts": {
-		"start": "ui5 serve --port 8080",
+		"start": "ui5 serve --port 8080 -o index.html",
 		"lint": "eslint webapp && ui5lint",
 		"test-runner": "ui5-test-runner --url http://localhost:8080/test/testsuite.qunit.html --start start --coverage -ccb 100 -ccf 100 -ccl 100 -ccs 100",
 		"test": "npm run lint && npm run test-runner",
@@ -25,6 +25,14 @@
 		"globals": "^15.14.0",
 		"local-web-server": "^5.4.0",
 		"rimraf": "^6.0.1",
-		"ui5-test-runner": "^5.4.3"
+		"ui5-middleware-livereload": "^3.1.0",
+		"ui5-test-runner": "^5.4.3",
+		"ui5-tooling-modules": "^3.22.1"
+	},
+	"dependencies": {
+		"@sap-webcomponents/rich-text-editor": "^1.0.0-rc.6",
+		"@ui5/webcomponents": "2.7.1",
+		"@ui5/webcomponents-ai": "2.7.1",
+		"@ui5/webcomponents-icons": "2.7.1"
 	}
 }

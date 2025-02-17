@@ -1,4 +1,8 @@
+sap-rich-text-editor {
+	--_ui5-v2-7-1_bar-end-container-padding-end: 0 !important;
+}
 /* Strikes through the completed items */
 li[data-todo-item-completed="true"] span {
 	text-decoration: line-through;
 }
+

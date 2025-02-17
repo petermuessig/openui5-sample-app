@@ -1,0 +1,136 @@
+<mvc:View xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" controllerName="sap.ui.demo.todo.controller.App" displayBlock="true"
+	xmlns:webc="@ui5/webcomponents"
+	xmlns:ai="@ui5/webcomponents-ai"
+	xmlns:rt="@sap-webcomponents/rich-text-editor"
+	core:require='{
+		"iconAI": "@ui5/webcomponents-icons/ai",
+		"iconStop": "@ui5/webcomponents-icons/stop",
+		"iconRevise": "@ui5/webcomponents-icons/navigation-down-arrow"
+	}'>
+		<App>
+			<Page>
+				<customHeader>
+					<f:ShellBar core:require="{ Helper: 'sap/ui/demo/todo/util/Helper' }" title="{i18n>TITLE}" homeIcon="{:= Helper.resolvePath('./img/logo_ui5.png') }" />
+				</customHeader>
+				<content>
+					<f:DynamicPage>
+						<f:header>
+							<f:DynamicPageHeader pinnable="false">
+								<HBox alignContent="Stretch" alignItems="Center" justifyContent="SpaceBetween">
+									<Input class="todoInput" id="addTodoItemInput" value="{/newTodo}" placeholder="{i18n>INPUT_PLACEHOLDER}" change=".addTodo">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Input>
+									<ai:Button id="myAiButton" state="generate" class="sapUiTinyMarginBegin" >
+										<ai:ButtonState name="generate" text="Generate" icon="ai"></ai:ButtonState>
+										<ai:ButtonState name="generating" text="Stop Generating" icon="stop"></ai:ButtonState>
+										<ai:ButtonState name="revise" text="Revise" icon="ai" end-icon="navigation-down-arrow"></ai:ButtonState>
+									</ai:Button>
+								</HBox>
+								<rt:RichTextEditor value="Write your message here">
+									<rt:footer>
+										<webc:Bar height="4em">
+											<webc:startContent>
+												<webc:Button id="left-arrow-btn" class="hide" design="Transparent" icon="navigation-left-arrow" title="Previous Version (Shift+Ctrl+Z)"  accessibleName="Previous Version"></webc:Button>
+												<webc:Label id="versioning-label" class="hide"></webc:Label>
+												<webc:Button id="right-arrow-btn" class="hide"  design="Transparent" icon="navigation-right-arrow" title="Next Version (Shift+Ctrl+Y)"  accessibleName="Next Version"></webc:Button>
+												<webc:Label id="ai-prompt-label"></webc:Label>
+											</webc:startContent>
+											<webc:endContent>
+												<ai:Button design="Transparent" id="ai-menu-btn" state="generate" title="AI Writing Assistant (Shift + F4)" accessibleName="AI Writing Assistant">
+													<ai:ButtonState name="generate" icon="ai"></ai:ButtonState>
+													<ai:ButtonState name="generating" icon="stop"></ai:ButtonState>
+												</ai:Button>
+
+												<webc:Menu id="ai-wa-menu-generate" opener="ai-menu-btn" class="hide">
+													<webc:MenuItem text="Generate" additional-text="Ctrl+Enter"></webc:MenuItem>
+												</webc:Menu>
+
+												<webc:Menu id="ai-wa-menu-regenerate" opener="ai-menu-btn" class="hide">
+													<webc:MenuItem text="Regenerate" additional-text="Ctrl+Enter"></webc:MenuItem>
+													<webc:MenuItem text="Fix spelling and grammar" startsSection="true"></webc:MenuItem>
+													<webc:MenuItem text="Rewrite text">
+														<webc:MenuItem text="Simplify"></webc:MenuItem>
+														<webc:MenuItem text="Expand"></webc:MenuItem>
+														<webc:MenuItem text="Rephrase"></webc:MenuItem>
+														<webc:MenuItem text="Summarize"></webc:MenuItem>
+													</webc:MenuItem>
+													<webc:MenuItem text="Make bulleted list"></webc:MenuItem>
+													<webc:MenuItem text="Translate">
+														<webc:MenuItem text="English"></webc:MenuItem>
+														<webc:MenuItem text="German"></webc:MenuItem>
+														<webc:MenuItem text="Bulgarian"></webc:MenuItem>
+													</webc:MenuItem>
+												</webc:Menu>
+											</webc:endContent>
+										</webc:Bar>
+									</rt:footer>
+								</rt:RichTextEditor>
+							</f:DynamicPageHeader>
+						</f:header>
+						<f:content>
+
+							<List id="todoList"
+								items="{ path: '/todos', events: { change: '.onUpdateItemsLeftCount' } }"
+								mode="None"
+								growing="true"
+								growingScrollToLoad="true"
+								showNoData="false"
+								showSeparators="None">
+								<headerToolbar>
+									<OverflowToolbar id="toolbar" class="sapUiSizeCompact" visible="{= !${view>/isMobile} }">
+										<ToolbarSpacer />
+										<SearchField id="searchTodoItemsInput" liveChange=".onSearch" width="20rem"/>
+										<SegmentedButton selectedKey="all" selectionChange=".onFilter" class="sapMSegmentedButtonNoAutoWidth">
+											<items>
+												<SegmentedButtonItem text="{i18n>LABEL_ALL}" key="all"/>
+												<SegmentedButtonItem text="{i18n>LABEL_ACTIVE}" key="active"/>
+												<SegmentedButtonItem text="{i18n>LABEL_COMPLETED}" key="completed"/>
+											</items>
+										</SegmentedButton>
+										<Button id="clearCompleted" enabled="{/itemsRemovable}" icon="sap-icon://delete" text="{i18n>CLEAR_COMPLETED}" press=".onClearCompleted"/>
+									</OverflowToolbar>
+								</headerToolbar>
+								<infoToolbar>
+									<OverflowToolbar
+										id="filterToolbar"
+										visible="false"
+										active="false">
+										<Label id="filterLabel"/>
+									</OverflowToolbar>
+								</infoToolbar>
+								<CustomListItem>
+									<HBox>
+										<CheckBox selected="{completed}"  />
+										<VBox justifyContent="Center">
+											<Text text="{title}"/>
+										</VBox>
+									</HBox>
+									<customData>
+										<core:CustomData key="todo-item-completed" value="{= String(${completed})}" writeToDom="true" />
+									</customData>
+								</CustomListItem>
+							</List>
+
+						</f:content>
+					</f:DynamicPage>
+				</content>
+
+				<footer>
+					<OverflowToolbar id="toolbar-footer" visible="{= !!${view>/isMobile} }">
+						<SegmentedButton selectedKey="all" selectionChange=".onFilter" class="sapMSegmentedButtonNoAutoWidth">
+							<items>
+								<SegmentedButtonItem text="All" key="all"/>
+								<SegmentedButtonItem text="Active" key="active"/>
+								<SegmentedButtonItem text="Completed" key="completed"/>
+							</items>
+						</SegmentedButton>
+						<ToolbarSpacer />
+						<Button id="clearCompleted-footer" enabled="{/itemsRemovable}" icon="sap-icon://delete" text="{i18n>CLEAR_COMPLETED}" press=".onClearCompleted"/>
+					</OverflowToolbar>
+				</footer>
+
+			</Page>
+		</App>
+</mvc:View>

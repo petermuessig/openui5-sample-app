@@ -1,0 +1,99 @@
+{
+	// Place your snippets for xml here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"ui5.yaml_task": {
+		"prefix": "- name: ui5-tooling-modules-task",
+		"scope": "yaml",
+		"body": [
+			"- name: ui5-tooling-modules-task",
+			"  afterTask: replaceVersion"
+		],
+		"description": "ui5.yaml_task"
+	},
+	"ui5.yaml_middleware": {
+		"prefix": "- name: ui5-tooling-modules-middleware",
+		"scope": "yaml",
+		"body": [
+			"- name: ui5-tooling-modules-middleware",
+			"  afterMiddleware: compression"
+		],
+		"description": "ui5.yaml_middleware"
+	},	
+	"AI_Namespace": {
+		"prefix": "xmlns:ai=",
+		"scope": "xml",
+		"body": [
+			"xmlns:ai=\"@ui5/webcomponents-ai\""
+		],
+		"description": "AI_Namespace"
+	},
+	"AI_Button": {
+		"prefix": "<ai:Button",
+		"scope": "xml",
+		"body": [
+			"<ai:Button id=\"myAiButton\" state=\"generate\" class=\"sapUiTinyMarginBegin\" >",
+			"	<ai:ButtonState name=\"generate\" text=\"Generate\" icon=\"ai\"></ai:ButtonState>",
+			"	<ai:ButtonState name=\"generating\" text=\"Stop Generating\" icon=\"stop\"></ai:ButtonState>",
+			"	<ai:ButtonState name=\"revise\" text=\"Revise\" icon=\"ai\" endIcon=\"navigation-down-arrow\"></ai:ButtonState>",
+			"</ai:Button>"
+		],
+		"description": "AI_Button"
+	},
+	"AI_Icons": {
+		"prefix": "core:require",
+		"scope": "xml",
+		"body": [
+			"core:require='{"
+			"	\"Icon\": \"@ui5/webcomponents/dist/Icon\"",
+			"	\"iconAI\": \"@ui5/webcomponents-icons/ai\",",
+			"	\"iconStop\": \"@ui5/webcomponents-icons/stop\",",
+			"	\"iconRevise\": \"@ui5/webcomponents-icons/navigation-down-arrow\"",
+			"}'"
+		],
+		"description": "AI_Icons"
+	},
+	"RT_Namespace": {
+		"prefix": "xmlns:rt=",
+		"scope": "xml",
+		"body": [
+			"xmlns:rt=\"@sap-webcomponents/rich-text-editor\""
+		],
+		"description": "RT_Namespace"
+	},
+	"AI_WritingAssistant1": {
+		"prefix": "<rt:RichTextEditor",
+		"scope": "xml",
+		"body": [
+			"<rt:RichTextEditor value=\"Write your message here\" />"
+		],
+		"description": "AI_WritingAssistant1"
+	},
+	"AI_WritingAssistant2": {
+		"prefix": "<rt:footer",
+		"scope": "xml",
+		"body": [
+			"<rt:footer>",
+			"	<webc:Bar height=\"4em\" >",
+			"		<webc:endContent>",
+			"			<ai:Button design=\"Transparent\" id=\"ai-menu-btn\" state=\"generate\" title=\"AI Writing Assistant (Shift + F4)\" accessibleName=\"AI Writing Assistant\">",
+			"				<ai:ButtonState name=\"generate\" icon=\"ai\"></ai:ButtonState>",
+			"				<ai:ButtonState name=\"generating\" icon=\"stop\"></ai:ButtonState>",
+			"			</ai:Button>",
+			"		</webc:endContent>",
+			"	</webc:Bar>",
+			"</rt:footer>",
+		],
+		"description": "AI_WritingAssistant2"
+	}
+}
