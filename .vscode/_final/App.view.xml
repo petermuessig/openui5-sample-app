@@ -2,7 +2,14 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m"
-	xmlns:f="sap.f">
+	xmlns:f="sap.f"
+	xmlns:ai="@ui5/webcomponents-ai"
+	core:require='{
+		"Icon": "@ui5/webcomponents/dist/Icon",
+		"iconAI": "@ui5/webcomponents-icons/ai",
+		"iconStop": "@ui5/webcomponents-icons/stop",
+		"iconRevise": "@ui5/webcomponents-icons/navigation-down-arrow"
+	}'>
 		<App>
 			<Page>
 				<customHeader>
@@ -19,6 +26,11 @@
 											<FlexItemData growFactor="1" />
 										</layoutData>
 									</Input>
+									<ai:Button id="myAiButton" state="generate" class="sapUiTinyMarginBegin" >
+										<ai:ButtonState name="generate" text="Generate" icon="ai"></ai:ButtonState>
+										<ai:ButtonState name="generating" text="Stop Generating" icon="stop"></ai:ButtonState>
+										<ai:ButtonState name="revise" text="Revise" icon="ai" endIcon="navigation-down-arrow"></ai:ButtonState>
+									</ai:Button>
 								</HBox>			
 							</f:DynamicPageHeader>
 
